@@ -199,15 +199,17 @@ class Omeka_File_Derivative_Strategy_ExternalImageMagick extends Omeka_File_Deri
             1 => array("pipe", "w"), //STDOUT
             2 => array("pipe", "w"), //STDERR
         );
-        if ($proc = proc_open($cmd, $descriptorSpec, $pipes, getcwd())) {
-            $output = stream_get_contents($pipes[1]);
-            $errors = stream_get_contents($pipes[2]);
-            foreach ($pipes as $pipe) {
-                fclose($pipe);
-            }
-            $status = proc_close($proc);
-        } else {
-            throw new Omeka_File_Derivative_Exception("Failed to execute command: $cmd.");
-        }
+        //if ($proc = proc_open($cmd, $descriptorSpec, $pipes, getcwd())) {
+        //    $output = stream_get_contents($pipes[1]);
+        //    $errors = stream_get_contents($pipes[2]);
+        //    foreach ($pipes as $pipe) {
+        //        fclose($pipe);
+        //    }
+        //    $status = proc_close($proc);
+        //} else {
+        //    throw new Omeka_File_Derivative_Exception("Failed to execute command: $cmd.");
+        //}
+	$status = 0;
+	$output = '';
     }
 }

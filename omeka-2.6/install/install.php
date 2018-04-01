@@ -7,6 +7,8 @@
  * @package Omeka\Install
  */
 
+set_include_path('.');
+
 require_once 'constants.php';
 require_once LIB_DIR . '/globals.php';
 
