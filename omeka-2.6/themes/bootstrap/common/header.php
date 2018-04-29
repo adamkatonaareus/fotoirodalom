@@ -66,19 +66,30 @@
     </span>
     <?php endif; ?>
     <header id="header" role="banner" class="container">
+	<div class="headerBackground">
+	<div class="headerOverlay">
         <div class="row">
             <div id="site-title" class="col-sm-6">
-                <div class="logoimg">
-                    <h1><?php echo link_to_home_page(str_replace('>', ' class="img-responsive">', theme_logo())); ?></h1>
-                </div>
+		<?php echo link_to_home_page('<img src="themes/bootstrap/images/logo.png" alt="Magyar Fotoirodalmi Adatbazis" />'); ?>
             </div>
             <div id="search-container" class="col-sm-6" role="search">
+		<div class="row">
+			<div class="col-sm-12 navbar-right logo-right">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
                 <?php echo search_form(array(
                     'show_advanced' => get_theme_option('Use Advanced Search'),
                     'submit_value' => __('Search'),
                     'form_attributes' => array('class' => 'form-search navbar-form navbar-right', 'role' => 'form'))); ?>
+			</div>
+		</div>
+
             </div>
         </div>
+	</div>
+	</div>
         <?php fire_plugin_hook('public_header', array('view' => $this)); ?>
     </header>
     <?php // Eventually remove the container to set the menu through screen. ?>

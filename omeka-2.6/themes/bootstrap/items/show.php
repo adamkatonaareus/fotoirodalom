@@ -91,6 +91,15 @@ else:
         </div>
         <!-- The following returns all of the files associated with an item. -->
         <div id="itemfiles" class="col-md-6">
+
+	<!-- external image -->
+	<?php if (metadata('item', array('Item Type Metadata', 'Jpg link'))): ?>
+	<div class="externalImage">
+		<img class="img-rounded img-responsive" src="<?php echo metadata('item', array('Item Type Metadata', 'Jpg link')) ?>" alt="image" />
+	</div>
+	<?php endif; ?>
+
+
             <?php if (metadata($item, 'has files')): ?>
             <h3><?php echo metadata($item, 'file_count') == 1 ? __('File') : __('Files'); ?></h3>
             <div class="element-text"><?php echo custom_files_for_item(

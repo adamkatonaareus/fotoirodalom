@@ -1,7 +1,6 @@
 /**********GENERAL STYLES**************/
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: sans-serif;
     letter-spacing: 1px;
 }
 body, p {
@@ -10,11 +9,7 @@ body, p {
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
-/*
-    background-color: #f8f8f8;
-    background-image: url(http://www.transparenttextures.com/patterns/fabric-of-squares.png);
-*/
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    font-size: 11pt;
 }
 #tagline,
 #tagline-author {
@@ -184,7 +179,6 @@ a:hover {
     border-top-right-radius: 5px ;
 }
 .exhibit-title {
-    font-family: sans-serif;
     letter-spacing: 1px;
 }
 .exhibit-nav-level-1 > li:hover {
@@ -371,7 +365,6 @@ margin-right: 5px;
 /******TAGS*******/
 .vvvvvvvv-popular {
     font-size: 140%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -380,7 +373,6 @@ margin-right: 5px;
 }
 .vvvvvvv-popular {
     font-size: 135%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -389,7 +381,6 @@ margin-right: 5px;
 }
 .vvvvvv-popular {
     font-size: 130%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -398,7 +389,6 @@ margin-right: 5px;
 }
 .vvvvv-popular {
     font-size: 125%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -407,7 +397,6 @@ margin-right: 5px;
 }
 .vvvv-popular {
     font-size: 120%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -416,7 +405,6 @@ margin-right: 5px;
 }
 .vvv-popular {
     font-size: 115%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -425,7 +413,6 @@ margin-right: 5px;
 }
 .vv-popular {
     font-size: 110%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -434,7 +421,6 @@ margin-right: 5px;
 }
 .v-popular {
     font-size: 105%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -443,7 +429,6 @@ margin-right: 5px;
 }
 .popular {
     font-size: 100%;
-    font-family: sans-serif;
     background-color: transparent;
     border: none;
 }
@@ -667,4 +652,81 @@ input.geolocation-longitude {
         display: inline-block;
         width: 48%;
     }
+}
+
+
+/**
+	Fotoirodalom customizations
+*/
+
+@font-face {
+    font-family: 'arsenalregular';
+    src: url('arsenal-regular-webfont.eot');
+    src: url('arsenal-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('arsenal-regular-webfont.woff2') format('woff2'),
+         url('arsenal-regular-webfont.woff') format('woff'),
+         url('arsenal-regular-webfont.svg#arsenalregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body 
+{
+    font-family: arsenalregular, 'Calibri Light', 'Open Sans', sans-serif;
+    font-size: 11pt;
+    color: #5d5e54;
+}
+
+#header
+{
+	padding: 0px 15px 5px 15px;
+	height: 150px;
+}
+.headerBackground
+{
+	background: url('../images/header_bg.png') repeat-x;
+	height: 150px;
+}
+.headerOverlay
+{
+	background: url('../images/header2.png') no-repeat 100% 0px;
+	height: 150px;
+}
+#search-container
+{
+        padding-right: 30px;	
+}
+.logo-right
+{
+	height: 70px;
+}
+
+/* Hide header background on small devices */
+@media (max-width: 740px) 
+{
+	.headerOverlay
+	{
+		background: none;
+	}	
+}
+
+h1,h2,h3,h4,h5,h6 
+{
+    font-family: arsenalregular, 'Calibri Light', 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+}
+h2
+{
+	font-size: 12pt;
+	font-weight: bold;
+}
+h3
+{
+	font-size: 11pt;
+	font-weight: bold;
+}
+.popular
+{
+    font-family: arsenalregular, 'Calibri Light', 'Open Sans', sans-serif;
 }
