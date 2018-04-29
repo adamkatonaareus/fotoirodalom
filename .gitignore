@@ -1,1 +1,6 @@
-db.ini
+/.metadata/
+/.recommenders/
+.settings
+.classpath
+.project
+target/

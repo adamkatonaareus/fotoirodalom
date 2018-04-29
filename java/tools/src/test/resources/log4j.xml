@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="false">
+
+<appender name="consoleappender" class="org.apache.log4j.ConsoleAppender">
+  <layout class="org.apache.log4j.PatternLayout">
+    <param name="ConversionPattern" value="%-15l{1} %d{HH:mm:ss} %-5p: %m%n" />
+  </layout>
+</appender>
+
+
+<!-- omeka -->
+<appender name="omeka_logfile" class="org.apache.log4j.RollingFileAppender">
+	<param name="File"   value="c:/log/omeka.log" />
+	<param name="Append" value="true" />
+	<param name="MaxFileSize" value="10000KB" />
+	<layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" value="%d{yyyy.MM.dd HH:mm:ss} %-5p %-25c{1}: %m%n"/>
+	</layout>
+</appender>
+
+
+<!-- omeka  -->	
+<category name="hu.guci.omeka">
+	<priority value="debug"/>
+	<appender-ref ref="omeka_logfile"/>
+	<appender-ref ref="consoleappender"/>
+</category>
+
+<!-- framework -->
+<category name="hu.areus">
+	<priority value="debug"/>
+	<appender-ref ref="omeka_logfile"/>
+	<appender-ref ref="consoleappender"/>
+</category>
+
+<!-- Eclipselink JPA debug -->
+<category name="org.eclipse.persistence">
+	<priority value="warn"/>        	<!--- this is not working, use EclipseLink_Logging_Level in the config file -->
+	<appender-ref ref="omeka_logfile"/>
+	<appender-ref ref="consoleappender"/>
+</category>
+
+</log4j:configuration>
