@@ -16,11 +16,13 @@ echo head(array(
 ));
 ?>
 <div id="primary">
+	<!-- FIX KA 20180429: removed page header
     <div class="row page-header">
         <div class="col-xs-12">
         <h1><span class="glyphicon glyphicon-list"></span> <?php echo $pageTitle;?> <small><?php echo __('(%s items total)', $total_results); ?></small></h1>
         </div>
     </div>
+	-->
     <nav class="items-nav navigation secondary-nav">
         <?php echo public_nav_items()->setUlClass('nav nav-pills'); ?>
     </nav>
@@ -134,8 +136,7 @@ echo head(array(
                 </div>
                 <?php endif; ?>
                 <?php if (get_collection_for_item($item)): ?>
-                <div><strong><?php echo __('Collection'); ?></strong></div>
-                <div class="element-text"><?php echo link_to_collection_for_item(); ?></div>
+                <div class="element-text"><strong>Kategória: </strong><?php echo link_to_collection_for_item(); ?></div>
                 <?php endif; ?>
                 <?php /* <div>
                     <h5><?php echo __('Citation'); ?></h5>

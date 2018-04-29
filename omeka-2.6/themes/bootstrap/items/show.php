@@ -30,7 +30,7 @@ else:
     // $fieldsToDisplay = get_theme_option('Display Dublin Core Fields');
 ?>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="row">
                 <div class="col-xs-12">
                     <?php echo all_element_texts($item); ?>
@@ -43,7 +43,7 @@ else:
                 <div class="col-xs-12">
                     <hr />
                     <div id="collection">
-                        <h4 style="display:inline"><span class="glyphicon glyphicon-book"></span> <?php echo __('Collection'); ?>: </h4>
+                        <h4 style="display:inline"><span class="glyphicon glyphicon-book"></span> Kategória: </h4>
                         <h4 style="display:inline"><?php echo link_to_collection_for_item(); ?></h4>
                     </div>
                 </div>
@@ -75,6 +75,7 @@ else:
                     <div class="element-text"><?php echo metadata($item,'citation',array('no_escape' => true)); ?></div>
                 </div>
             </div>
+		<!-- FIX KA 20180429: removed output formats
             <div class="row">
                 <div id="item-output-formats" class="col-xs-12">
                     <hr />
@@ -82,6 +83,7 @@ else:
                     <div class="element-text"><?php echo output_format_list(); ?></div>
                 </div>
             </div>
+		-->
             <div class="row">
                 <div class="col-xs-12">
                     <hr />
@@ -90,7 +92,7 @@ else:
             </div>
         </div>
         <!-- The following returns all of the files associated with an item. -->
-        <div id="itemfiles" class="col-md-6">
+        <div id="itemfiles" class="col-md-3">
 
 	<!-- external image -->
 	<?php if (metadata('item', array('Item Type Metadata', 'Jpg link'))): ?>

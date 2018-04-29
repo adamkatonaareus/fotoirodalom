@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -115,6 +117,8 @@ public class ItemImporter extends BaseClass
 				
 				//--- Get column values
 				Map<String, String> columnValues = new HashMap<>();
+				NumberFormat format = new DecimalFormat("#");
+				
 				for (Integer colNo : columnNames.keySet())
 				{
 					Cell cell = row.getCell(colNo);
@@ -126,8 +130,9 @@ public class ItemImporter extends BaseClass
 								columnValues.put(columnNames.get(colNo), cell.getStringCellValue());
 								break;
 							case NUMERIC:
+								//--- FIX KA 20180429: round numbers so it won't add .0 to string.
 								columnValues.put(columnNames.get(colNo), 
-									String.valueOf(cell.getNumericCellValue()));
+									format.format(cell.getNumericCellValue()));
 								break;
 							case BLANK:
 								columnValues.put(columnNames.get(colNo), "");
