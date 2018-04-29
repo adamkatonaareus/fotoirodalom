@@ -124,7 +124,11 @@ echo head(array(
             </div>
             <div class="col-sm-7">
                 <div class="item-title">
-                    <h3><?php echo link_to_item(metadata($item, array('Dublin Core', 'Title')), array('class' => 'permalink', 'snippet' => 250)); ?></h3>
+                    <h3><?php echo link_to_item(
+			//--- FIX KA 20180429: Showing author too
+			metadata($item, array('Dublin Core', 'Creator')) . ": " .
+			metadata($item, array('Dublin Core', 'Title')), 
+			array('class' => 'permalink', 'snippet' => 250)); ?></h3>
                 </div>
                 <?php if ($text = metadata($item, array('Item Type Metadata', 'Text'), array('snippet' => 250))): ?>
                 <div class="item-description">

@@ -2,9 +2,14 @@
         <footer>
             <div class="row">
                 <div id="footer-text" class="col-sm-9">
+		    <!-- FIX KA 20180429: logos
                     <?php if ( $footerText = get_theme_option('Footer Text') ): ?>
                     <p><?php echo $footerText; ?></p>
                     <?php endif; ?>
+		    -->
+		    <a href="http://www.kormany.hu/hu/emberi-eroforrasok-miniszteriuma"><img class="partner" src="/fotoirodalom/themes/bootstrap/images/emmi_logo2.png" alt="Emberi Erőforrások Minisztériuma" /></a>
+		    <a href="http://fr.u-szeged.hu/"><img class="partner" src="/fotoirodalom/themes/bootstrap/images/logo_hu_2.jpg" alt="Francia Tanszék" /></a>
+			
                 </div>
             </div>
             <div class="row">

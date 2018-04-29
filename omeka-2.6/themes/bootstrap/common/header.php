@@ -21,6 +21,9 @@
     <!-- Plugin Stuff -->
     <?php fire_plugin_hook('public_head', array('view' => $this)); ?>
 
+    <!-- FIX KA 20180429: added missing Lato font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin-ext" rel="stylesheet" /> 
+
     <!-- Stylesheets -->
     <?php
     if (get_theme_option('Use Internal Bootstrap')) {
@@ -70,7 +73,9 @@
 	<div class="headerOverlay">
         <div class="row">
             <div id="site-title" class="col-sm-6">
+		<!-- FIX KA 20180429: No logo 
 		<?php echo link_to_home_page('<img src="themes/bootstrap/images/logo.png" alt="Magyar Fotoirodalmi Adatbazis" />'); ?>
+		-->
             </div>
             <div id="search-container" class="col-sm-6" role="search">
 		<div class="row">

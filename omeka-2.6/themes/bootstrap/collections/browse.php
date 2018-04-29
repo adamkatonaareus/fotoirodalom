@@ -79,7 +79,11 @@ echo head(array(
                         <?php fire_plugin_hook('public_collections_browse_each', array('view' => $this, 'collection' => $collection)); ?>
                     </div>
                     <div>
-                        <p class="view-items-link-browse"><?php echo link_to_items_in_collection($text = 'View the items in this collection'); ?></p>
+                        <p class="view-items-link-browse">
+			<?php 
+			        //--- FIX KA 20180429: removed this link 
+				//echo link_to_items_in_collection($text = 'View the items in this collection'); 
+			?></p>
 	                </div>
                 </div>
             </div>
