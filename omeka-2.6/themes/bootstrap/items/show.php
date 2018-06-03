@@ -20,7 +20,7 @@ echo head(array(
     </div>
     <div class="row page-header">
         <div class="col-xs-12">
-            <h1><span class="glyphicon glyphicon-book"></span> <?php echo $pageTitle; ?></h1>
+            <h1><?php echo moly_cover($item, true); ?> <?php echo $pageTitle; ?></h1>
         </div>
     </div>
 <?php if ($selectedMetadata = get_theme_option('Display Preselected Metadata')):
@@ -33,7 +33,123 @@ else:
         <div class="col-md-9">
             <div class="row">
                 <div class="col-xs-12">
-                    <?php echo all_element_texts($item); ?>
+					<!-- FIX KA 20180502: only display selected fields
+                    php echo all_element_texts($item); 
+					-->
+                    <div class="element-set">
+					
+		<?php if ($itemCreator = metadata('item', array('Dublin Core', 'Creator'))): ?>
+		<div id="dublin-core-creator" class="element">
+			<div class="row">
+				<div class="col-xs-3">Szerző:</div>
+				<div class="col-xs-9"><?php echo $itemCreator ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemTitle = metadata('item', array('Dublin Core', 'Title'))): ?>
+        <div id="dublin-core-title" class="element">
+			<div class="row">
+				<div class="col-xs-3">Cím:</div>
+				<div class="col-xs-9"><?php echo $itemTitle ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemPublisher = metadata('item', array('Dublin Core', 'Publisher'))): ?>
+        <div id="dublin-core-publisher" class="element">
+			<div class="row">
+				<div class="col-xs-3">Kiadó:</div>
+				<div class="col-xs-9"><?php echo ($itemPublisher) ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemLocation = metadata('item', array('Item Type Metadata', 'Location'))): ?>
+		<div id="dublin-core-location" class="element">
+			<div class="row">
+				<div class="col-xs-3">Kiadás helye:</div>
+				<div class="col-xs-9"><?php echo $itemLocation ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemDate = metadata('item', array('Dublin Core', 'Date'))): ?>
+        <div id="dublin-core-date" class="element">
+			<div class="row">
+				<div class="col-xs-3">Megjelenés ideje:</div>
+				<div class="col-xs-9"><?php echo $itemDate ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemSorozatCim = metadata('item', array('Item Type Metadata', 'Sorozat cím'))): ?>
+        <div id="book-item-type-metadata-sorozat-cm" class="element">
+			<div class="row">
+				<div class="col-xs-3">Sorozatcím:</div>
+				<div class="col-xs-9"><?php echo $itemSorozatCim ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemContributor = metadata('item', array('Dublin Core', 'Contributor'))): ?>
+        <div id="dublin-core-contributor" class="element">
+			<div class="row">
+				<div class="col-xs-3">Fotográfus:</div>
+				<div class="col-xs-9"><?php echo $itemContributor ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemFotoJellege = metadata('item', array('Item Type Metadata', 'Fotó jellege'))): ?>
+        <div id="book-item-type-metadata-fot-jellege" class="element">
+			<div class="row">
+				<div class="col-xs-3">Fotó jellege:</div>
+				<div class="col-xs-9"><?php echo $itemFotoJellege ?></div>
+			</div>
+        </div>
+		<?php endif ?>
+		
+		<?php if ($itemKapcsan = metadata('item', array('Item Type Metadata', 'Fotós vagy író kapcsán'))): ?>
+        <div id="book-item-type-metadata-fot-jellege" class="element">
+			<div class="row">
+				<div class="col-xs-3">Fotós vagy író kapcsán:</div>
+				<div class="col-xs-9"><?php echo $itemKapcsan ?></div>
+			</div>
+        </div>		
+		<?php endif ?>
+		
+		<?php if ($itemDescription = metadata('item', array('Dublin Core', 'Description'))): ?>
+        <div id="dublin-core-description" class="element">
+			<div class="row">
+				<div class="col-xs-3">Leírás:</div>
+				<div class="col-xs-9"><?php echo $itemDescription ?></div>
+			</div>
+		</div>
+		<?php endif ?>
+		
+
+
+		<?php if ($itemSzteLink = metadata('item', array('Item Type Metadata', 'SZTE rekord link'))): ?>
+        <div id="book-item-type-metadata-szte-rekord-link" class="element">
+			<div class="row">
+				<div class="col-xs-3"><a target="_blank" href="<?php echo $itemSzteLink ?>">SZTE rekord link</a></div>
+				<div class="col-xs-9"></div>
+			</div>
+        </div>
+		<?php endif ?>
+
+		<?php if ($itemPimLink = metadata('item', array('Item Type Metadata', 'PIM rekord link'))): ?>
+        <div id="book-item-type-metadata-pim-rekord-link" class="element">
+			<div class="row">
+				<div class="col-xs-3"><a target="_blank" href="<?php echo $itemPimLink ?>">PIM rekord link</a></div>
+				<div class="col-xs-9"></div>
+			</div>
+        </div>
+		<?php endif ?>		
+		
+    
+					</div><!-- end element-set -->
                 </div>
             </div>
 
@@ -55,12 +171,13 @@ else:
             <div class="row">
                 <div class="col-xs-12">
                     <hr />
-                    <h4><span class="fa fa-tags fa-large"></span> <?php echo __('Tags'); ?></h4>
+                    <h4><span class="fa fa-tags fa-large"></span>Tárgyszavak</h4>
                     <div class="tags well well-small">
                         <?php if (tag_string($item) != null):
                                 echo tag_string($item);
-                            else:
-                                echo __('No tags recorded for this item.');
+							//FIX KA 20180507: don't write anything.
+                            //else:
+                            //    echo __('No tags recorded for this item.');
                             endif;
                         ?>
                     </div>
@@ -71,7 +188,7 @@ else:
             <div class="row">
                 <div class="col-xs-12">
                     <hr />
-                    <h4><span class="fa fa-retweet fa-lg"></span> <?php echo __('Citation'); ?></h4>
+                    <h4><span class="fa fa-retweet fa-lg"></span>Idézet</h4>
                     <div class="element-text"><?php echo metadata($item,'citation',array('no_escape' => true)); ?></div>
                 </div>
             </div>
@@ -94,10 +211,13 @@ else:
         <!-- The following returns all of the files associated with an item. -->
         <div id="itemfiles" class="col-md-3">
 
-	<!-- external image -->
+	<!-- FIX KA 20180429: external image 
+	-->
 	<?php if (metadata('item', array('Item Type Metadata', 'Jpg link'))): ?>
 	<div class="externalImage">
+		<a target="_blank" href="<?php echo metadata('item', array('Item Type Metadata', 'Fotó link')) ?>">
 		<img class="img-rounded img-responsive" src="<?php echo metadata('item', array('Item Type Metadata', 'Jpg link')) ?>" alt="image" />
+		</a>
 	</div>
 	<?php endif; ?>
 

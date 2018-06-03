@@ -9,7 +9,7 @@ echo head(array(
 <div id="primary">
     <div class="row page-header">
         <div class="col-xs-12">
-            <h1><span class="glyphicon glyphicon-list"></span> <?php echo $pageTitle; ?> <small><span class="glyphicon glyphicon-tags"></span> <?php echo __('By Current Tags'); ?></small></h1>
+            <h1><span class="glyphicon glyphicon-list"></span> <?php echo $pageTitle; ?> <small><span class="glyphicon glyphicon-tags"></span> <?php echo ('Címke alapján'); ?></small></h1>
         </div>
     </div>
     <nav class="items-nav navigation secondary-nav">
@@ -17,7 +17,7 @@ echo head(array(
     </nav>
     <?php
         asort($tags);
-        echo tag_cloud($tags, url('items/browse'));
+        echo tag_cloud_bootstrap($tags, url('items/browse'));
     ?>
 </div><?php // end primary. ?>
 <?php echo foot();

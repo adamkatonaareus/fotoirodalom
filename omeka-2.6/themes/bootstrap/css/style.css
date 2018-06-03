@@ -685,12 +685,11 @@ body
 }
 .headerBackground
 {
-	background: url('../images/header_bg.png') repeat-x;
 	height: 150px;
 }
 .headerOverlay
 {
-	background: url('../images/header3.png') no-repeat 0px 0px;
+	background: url('../images/header4.png') no-repeat 0px 0px;
 	height: 150px;
 }
 #search-container
@@ -733,4 +732,16 @@ h3
 .partner
 {
 	height: 60px;
+}
+
+/* Header of an element */
+.element>div>div:first-child
+{
+	font-weight: bold;
+	text-align: right;
+}
+
+.element
+{
+	margin-bottom: 10px;
 }

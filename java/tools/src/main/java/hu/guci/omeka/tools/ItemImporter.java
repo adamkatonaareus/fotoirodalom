@@ -34,7 +34,7 @@ import hu.areus.terminus.base.BaseClass;
 public class ItemImporter extends BaseClass 
 {
 	private static final String IMPORT_PATH = "F:\\guci\\guci-Omeka\\Munkaanyagok\\";
-	private static final String IMPORT_FILENAME = "Import_v0.1.xlsx";
+	private static final String IMPORT_FILENAME = "Import_v0.2.xlsx";
 	private static final int FIRST_ITEM_ID = 1;
 	private static final int FIRST_ELEMENT_TEXT_ID = 10;
 	private static final int FIRST_RECORD_TAG_ID = 1;
@@ -71,7 +71,7 @@ public class ItemImporter extends BaseClass
 		try
 		{
 			//--- Process tabs
-			for (int i=0; i<3; i++)
+			for (int i=0; i<4; i++)
 			{
 				processSheet(i);
 			}
@@ -187,7 +187,8 @@ public class ItemImporter extends BaseClass
 					
 					for (String tag : tags)
 					{
-						String tag2 = tag.trim().toLowerCase();
+						//FIX KA 20180530: no lowercase.
+						String tag2 = tag.trim(); //.toLowerCase();
 						getLogger().debug("Adding tag: " + tag2);
 						
 						int tagId = getTagId(tag2);
@@ -280,7 +281,7 @@ public class ItemImporter extends BaseClass
 	 */
 	private void writeTags() throws IOException 
 	{
-		File file = new File(IMPORT_PATH + "4_tags.sql");
+		File file = new File(IMPORT_PATH + "5_tags.sql");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		
 		try
@@ -401,6 +402,8 @@ public class ItemImporter extends BaseClass
 			elementNames.put("Fotó link", 58);
 			elementNames.put("Fotó jellege", 59);
 			elementNames.put("Fotós vagy író kapcsán", 60);
+			elementNames.put("Moly ID", 62);
+			elementNames.put("ISBN", 63);
 		}
 		
 		if (elementNames.containsKey(parts[1]))
@@ -443,8 +446,8 @@ public class ItemImporter extends BaseClass
 		switch (collectionName)
 		{
 			case "Fotóillusztrált könyvek": return 1;
-			case "Fotóirodalom portrék": return 2;
-			case "Fotóirodalom elmélet": return 3;
+			case "Íróportrék": return 2;
+			case "Elméleti művek": return 3;
 			case "Illusztráció nélkül": return 4;
 			default: throw new IllegalArgumentException("Unknown collection: " + collectionName);
 		}

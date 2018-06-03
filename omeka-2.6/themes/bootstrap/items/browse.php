@@ -45,7 +45,7 @@ echo head(array(
     <div class="row">
         <div class="col-xs-12">
             <div id="sort-links" class="input-group input-group-sm btn-group">
-                <span class="input-group-addon"><?php echo __('Sort by:'); ?></span>
+                <span class="input-group-addon"><?php echo __('Sort by: '); ?></span>
                 <div class="input-group">
                     <?php
                         echo bootstrap_browse_sort_links($sortLinks, array(
@@ -115,11 +115,16 @@ echo head(array(
         <div class="row">
             <div class="col-sm-2">
                 <div class="item-img">
-            <?php if (metadata($item, 'has thumbnail')): ?>
+            <!--
+	    <?php if (metadata($item, 'has thumbnail')): ?>
                     <?php echo link_to_item(item_image('thumbnail', array('class' => 'image img-responsive'))); ?>
             <?php else: ?>
                     <div class="image none"></div>
             <?php endif; ?>
+	    -->
+	    <?php
+	    	echo moly_cover($item, false);
+	    ?>			
                 </div>
             </div>
             <div class="col-sm-7">
@@ -140,7 +145,8 @@ echo head(array(
                 </div>
                 <?php endif; ?>
                 <?php if (get_collection_for_item($item)): ?>
-                <div class="element-text"><strong>Kategória: </strong><?php echo link_to_collection_for_item(); ?></div>
+                <br/>
+		<div class="element-text"><strong>Kategória: </strong><?php echo link_to_collection_for_item(); ?></div>
                 <?php endif; ?>
                 <?php /* <div>
                     <h5><?php echo __('Citation'); ?></h5>

@@ -423,3 +423,125 @@ function related_exhibit_page($item) {
         return $exhibits[0];
     }
 }
+
+/**
+	FIX KA 20180508: using saved images for collections.
+*/
+function saved_record_image($folder, $item)
+{
+	$filename = $folder . '/' . $item->id . '.jpg';
+	
+	if (file_exists(getcwd() . '/themes/bootstrap/images/' . $filename))
+	{
+		return '<img src="' . img($filename) . '" class="img-rounded img-responsive img-thumbnail" />';
+	}
+	else
+	{
+		return;
+	}
+}
+
+/**
+	FIX KA 20180530: using moly API
+*/
+function moly_cover($item, $showGlyphIcon)
+{
+  	$moly_key = "72ea039af4c9547bc19f16e57c0cc732";
+//	ini_set("allow_url_fopen", 1);
+
+	//echo "id: " . metadata($item, array('Item Type Metadata', 'Moly ID')) . ", isbn: " . metadata($item, array('Item Type Metadata', 'ISBN'));
+
+	if ($moly_id = metadata($item, array('Item Type Metadata', 'Moly ID')))
+	{
+		$moly_url = "https://moly.hu/api/book/" . $moly_id . ".json?key=" . $moly_key;
+  		$json = file_get_contents($moly_url);
+  		$obj = json_decode($json);
+	  	$moly_img_url = $obj->book->cover;
+	}
+	else
+	{
+		if ($moly_isbn = metadata($item, array('Item Type Metadata', 'ISBN')))
+		{
+			$moly_url = "https://moly.hu/api/book_by_isbn.json?q=" . $moly_isbn . "&key=" . $moly_key;
+  			$json = file_get_contents($moly_url);
+			if ($json !== false)
+			{
+  				$obj = json_decode($json);
+  				$moly_img_url = $obj->cover;
+			}
+		}
+	}	
+
+
+	if ($moly_img_url)
+	{
+		return '<img src="' . $moly_img_url . '" class="img-rounded img-responsive img-thumbnail" alt="" />';
+	}
+	else
+	{
+		if ($showGlyphIcon)
+		{
+			return '<span class="glyphicon glyphicon-book"></span>';
+		}
+		else
+		{
+			return '<img src="' . img('no-file.png') . '" class="img-rounded img-responsive img-thumbnail" alt="' . __('No file') . '" />';
+		}
+	}
+}
+
+
+/**
+ * Create a tag cloud made of divs that follow the hTagcloud microformat
+ *
+ * @package Omeka\Function\View\Tag
+ * @param Omeka_Record_AbstractRecord|array $recordOrTags The record to retrieve
+ * tags from, or the actual array of tags
+ * @param string|null $link The URI to use in the link for each tag. If none
+ * given, tags in the cloud will not be given links.
+ * @param int $maxClasses
+ * @param bool $tagNumber
+ * @param string $tagNumberOrder
+ * @return string HTML for the tag cloud
+ */
+function tag_cloud_bootstrap($recordOrTags, $link = null)
+{
+    if (!$recordOrTags) {
+        $tags = array();
+    } elseif (is_string($recordOrTags)) {
+        $tags = get_current_record($recordOrTags)->Tags;
+    } elseif ($recordOrTags instanceof Omeka_Record_AbstractRecord) {
+        $tags = $recordOrTags->Tags;
+    } else {
+        $tags = $recordOrTags;
+    }
+
+    if (empty($tags)) {
+        return '<p>' . __('No tags are available.') . '</p>';
+    }
+
+    $html = '<br/><br/><div class="row">';
+
+    foreach ($tags as $tag) 
+    {
+        //$size = (int) (($tag['tagCount'] * $maxClasses) / $largest - 1);
+        //$class = str_repeat('v', $size) . ($size ? '-' : '') . 'popular';
+
+	$html .= '<div class="col-sm-4">';
+        if ($link) {
+            $html .= '<a href="' . html_escape(url($link, array('tags' => $tag['name']))) . '">';
+        }
+        $html .= html_escape($tag['name']);
+        if ($link) {
+            $html .= '</a>';
+        }
+        $html .= '</div>' . "\n";
+
+    }
+
+    $html .= '</div>';
+
+    return $html;
+
+}
+

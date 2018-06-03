@@ -38,11 +38,20 @@
         <?php foreach(loop('items') as $item): ?>
         <div class="col-sm-3">
             <div class="well" style="text-align:center;">
-                <div><?php if (metadata($item, 'has files')):
-                    echo link_to_item(item_image('square_thumbnail', array('class' => 'img-rounded img-responsive img-thumbnail')));
-                else:
-                    echo link_to_item($noFile, array('class' => 'image none'), 'show', $item);
-                endif; ?>
+                <div>
+		<?php 
+		
+		//FIX KA 20180601: show moly cover
+		//if (metadata($item, 'has files')):
+                    echo link_to_item(
+			moly_cover($item)
+			//item_image('square_thumbnail', array('class' => 'img-rounded img-responsive img-thumbnail'))
+			);
+                //else:
+                //    echo link_to_item($noFile, array('class' => 'image none'), 'show', $item);
+                //endif; 
+		
+		?>
                 </div>
                 <br />
                 <p class="caption ellipsis"><span><?php echo metadata($item, array('Dublin Core', 'Title')); ?></span></p>

@@ -1,5 +1,5 @@
 <?php
-$pageTitle = __('Browse Collections');
+$pageTitle = 'Kategóriák';
 echo head(array(
     'title' => $pageTitle,
     'bodyclass' => 'collections browse',
@@ -24,7 +24,7 @@ echo head(array(
     <div class="row">
         <div class="col-xs-12">
             <div id="sort-links" class="input-group input-group-sm btn-group">
-                <span class="input-group-addon"><?php echo __('Sort by:'); ?></span>
+                <span class="input-group-addon"><?php echo __('Sort by: '); ?></span>
                 <div class="input-group">
                     <?php
                         echo bootstrap_browse_sort_links($sortLinks, array(
@@ -46,7 +46,9 @@ echo head(array(
                 <div class="col-sm-4">
                     <div class="collection-img">
                         <?php
-                            $collectionImage = record_image('collection', 'square_thumbnail', array('class' => 'img-responsive'));
+							//--- FIX KA 20180508: using saved files
+                            //$collectionImage = record_image('collection', 'square_thumbnail', array('class' => 'img-responsive'));
+							$collectionImage = saved_record_image('collection', $collection);
                             $noFile = '<img src="' . img('no-file.png') . '" class="img-rounded img-responsive img-thumbnail" alt="' . __('No file') . '" />';
                             if ($collectionImage):
                                 echo link_to_collection($collectionImage, array('class' => 'image'));
