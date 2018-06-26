@@ -38,7 +38,11 @@ echo head(array(
         <div class="col-sm-2">
             <div class="exhibit-img">
                 <?php
-                $exhibitImage = record_image($exhibit, 'square_thumbnail', array('class' => 'image img-responsive'));
+
+     		//--- FIX KA 20180626: using saved files
+                //$exhibitImage = record_image($exhibit, 'square_thumbnail', array('class' => 'image img-responsive'));
+		$exhibitImage = saved_record_image('exhibit', $exhibit);
+
                 if ($exhibitImage):
                     echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage);
                 else: ?>

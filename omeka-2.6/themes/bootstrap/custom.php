@@ -433,7 +433,7 @@ function saved_record_image($folder, $item)
 	
 	if (file_exists(getcwd() . '/themes/bootstrap/images/' . $filename))
 	{
-		return '<img src="' . img($filename) . '" class="img-rounded img-responsive img-thumbnail" />';
+		return '<img src="' . img($filename) . '" class="img-responsive" />';
 	}
 	else
 	{
@@ -470,6 +470,13 @@ function moly_cover($item, $showGlyphIcon)
   				$moly_img_url = $obj->cover;
 			}
 		}
+		else
+		{
+			if ($moly_borito = metadata($item, array('Item Type Metadata', 'borító jpg link')))
+			{
+				$moly_img_url = $moly_borito;	
+			}
+		}
 	}	
 
 
@@ -499,9 +506,6 @@ function moly_cover($item, $showGlyphIcon)
  * tags from, or the actual array of tags
  * @param string|null $link The URI to use in the link for each tag. If none
  * given, tags in the cloud will not be given links.
- * @param int $maxClasses
- * @param bool $tagNumber
- * @param string $tagNumberOrder
  * @return string HTML for the tag cloud
  */
 function tag_cloud_bootstrap($recordOrTags, $link = null)
@@ -520,14 +524,31 @@ function tag_cloud_bootstrap($recordOrTags, $link = null)
         return '<p>' . __('No tags are available.') . '</p>';
     }
 
-    $html = '<br/><br/><div class="row">';
+    //Get the largest value in the tags array
+    $maxClasses = count($tags);
+    $largest = 0;
+    foreach ($tags as $tag) {
+        if ($tag["tagCount"] > $largest) {
+            $largest = $tag['tagCount'];
+        }
+    }
+
+    if ($largest < $maxClasses) {
+        $maxClasses = $largest;
+    }
+
+    $html = '<br/><br/><div class="row"><div class="col-sm-4">';
+
+    //--- Calculate number of tags in a column
+    $maxNumTags = count($tags) / 3;
+    $numTags = 0;
 
     foreach ($tags as $tag) 
     {
-        //$size = (int) (($tag['tagCount'] * $maxClasses) / $largest - 1);
-        //$class = str_repeat('v', $size) . ($size ? '-' : '') . 'popular';
+        $size = (int) (($tag['tagCount'] * $maxClasses) / $largest - 1);
+        $class = str_repeat('v', $size) . ($size ? '-' : '') . 'popular';
 
-	$html .= '<div class="col-sm-4">';
+	$html .= '<span class="' . $class . '">';
         if ($link) {
             $html .= '<a href="' . html_escape(url($link, array('tags' => $tag['name']))) . '">';
         }
@@ -535,11 +556,17 @@ function tag_cloud_bootstrap($recordOrTags, $link = null)
         if ($link) {
             $html .= '</a>';
         }
-        $html .= '</div>' . "\n";
+        $html .= '</span><br/>' . "\n";
 
+	$numTags++;
+	if ($numTags >= $maxNumTags)
+	{
+	 	$numTags = 0;
+		$html .= '</div><div class="col-sm-4">';
+	}
     }
 
-    $html .= '</div>';
+    $html .= '</div></div>';
 
     return $html;
 

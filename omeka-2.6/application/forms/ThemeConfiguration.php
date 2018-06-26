@@ -110,7 +110,8 @@ class Omeka_Form_ThemeConfiguration extends Omeka_Form
      */
     private function _processFileElement($element)
     {
-        $element->setDestination(Zend_Registry::get('storage')->getTempDir());
+	//FIX KA 20180603: This is not working on elin.hu...
+        //$element->setDestination(Zend_Registry::get('storage')->getTempDir());
 
         $options = $this->getThemeOptions();
         $fileName = @$options[$element->getName()];

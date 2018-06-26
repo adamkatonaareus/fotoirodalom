@@ -715,6 +715,10 @@ h1,h2,h3,h4,h5,h6
     font-family: 'Open Sans', Verdana, Arial, sans-serif;
     letter-spacing: 1px;
 }
+h1
+{
+	font-size: 18pt;
+}
 h2
 {
 	font-size: 12pt;
@@ -734,6 +738,11 @@ h3
 	height: 60px;
 }
 
+a
+{
+	color: rgb(75, 150, 166);
+}
+
 /* Header of an element */
 .element>div>div:first-child
 {
@@ -744,4 +753,15 @@ h3
 .element
 {
 	margin-bottom: 10px;
+}
+
+a.collection-single>img
+{
+	width: 150px;
+}
+
+.img-thumbnail
+{
+	max-height: 150px;
+	max-width: 150px;
 }

@@ -20,6 +20,9 @@ if (!defined('APPLICATION_ENV')) {
     define('APPLICATION_ENV', $app_env);
 }
 
+//FIX KA 20180603: Fixing open_basedir warning
+set_include_path('.');
+
 // Define directory path constants.
 
 define('BASE_DIR', dirname(__FILE__));

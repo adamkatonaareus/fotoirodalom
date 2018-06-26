@@ -1,13 +1,17 @@
 <div class="collection record">
     <?php
     $title = metadata($collection, 'display_title');
-    $image = record_image($collection, 'square_thumbnail', array('class' => 'center-block img-responsive'));
+
+    //--- FIX KA 20180508: using saved files
+    //$image = record_image($collection, 'square_thumbnail', array('class' => 'center-block img-responsive'));
+    $image = saved_record_image('collection', $collection);
+    
     $description = metadata($collection, array('Dublin Core', 'Description'), array('no_escape' => true, 'snippet' => 150));
     ?>
     <h3 class="ellipsis"><?php echo link_to($this->collection, 'show', $title); ?></h3>
     <div class="image-featured">
     <?php if ($image): ?>
-        <?php echo link_to($collection, 'show', $image, array('class' => 'image')); ?>
+        <?php echo link_to($collection, 'show', $image, array('class' => 'image collection-single')); ?>
     <?php else: ?>
         <?php $noFile = '<img src="' . img('no-file.png') . '" class="center-block img-responsive" alt="' . __('No file') . '" />'; ?>
         <?php echo link_to($collection, 'show', $noFile, array('class' => 'image none')); ?>

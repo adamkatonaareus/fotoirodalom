@@ -43,7 +43,7 @@ echo head(array(
     <?php foreach(loop('collections') as $collection): ?>
         <div class="col-sm-6 col-lg-4">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="collection-img">
                         <?php
 							//--- FIX KA 20180508: using saved files
@@ -58,7 +58,7 @@ echo head(array(
                         ?>
                     </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <h2><?php echo link_to_collection(); ?></h2>
                     <?php if (metadata('collection',array('Dublin Core', 'Contributor'))): ?>
                     <div class="element well well-sm well-md well-lg">

@@ -73,9 +73,7 @@
 	<div class="headerOverlay">
         <div class="row">
             <div id="site-title" class="col-sm-6">
-		<!-- FIX KA 20180429: No logo 
-		<?php echo link_to_home_page('<img src="themes/bootstrap/images/logo.png" alt="Magyar Fotoirodalmi Adatbazis" />'); ?>
-		-->
+		<?php echo link_to_home_page('<img src="/themes/bootstrap/images/logo.png" alt="Magyar Fotoirodalmi Adatbazis" />'); ?>
             </div>
             <div id="search-container" class="col-sm-6" role="search">
 		<div class="row">
@@ -126,7 +124,7 @@
                 if ($twitter || $facebook): ?>
                 <ul class="nav navbar-nav navbar-right">
                     <?php if ($twitter): ?>
-                    <li><a href="<?php echo $twitter; ?>" target="__blank" class="navbar-link"><span class="fa fa-lg fa-twitter"></span></a></li>
+                    <li><a href="<?php echo $twitter; ?>" target="__blank" class="navbar-link">Blog</span></a></li>
                     <?php endif; ?>
                     <?php if ($facebook): ?>
                     <li><a href="<?php echo $facebook; ?>" target="__blank" class="navbar-link"><span class="fa fa-lg fa-facebook"></span></a></li>

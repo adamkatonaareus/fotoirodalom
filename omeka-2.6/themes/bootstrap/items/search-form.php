@@ -63,6 +63,18 @@ $formAttributes['class'] = 'form-horizontal';
                         )
                     );
                 }
+
+				//FIX KA 20180603: Defining fixed fields.
+				$fixedFieldList = array(
+					39 => __('Szerző'),
+					50 => __('Title'),
+					45 => __('Kiadó'),
+					40 => __('Megjelenés éve'),
+					60 => __('Fotós vagy író kapcsán'),
+					59 => __('Fotó jellege'),
+					54 => __('Fotózta')
+				);
+
                 echo $this->formSelect(
                     "advanced[$i][element_id]",
                     @$rows['element_id'],
@@ -71,10 +83,12 @@ $formAttributes['class'] = 'form-horizontal';
                         'id' => null,
                         'class' => 'advanced-search-element inline',
                     ),
-                    get_table_options('Element', null, array(
-                        'record_types' => array('Item', 'All'),
-                        'sort' => 'orderBySet')
-                    )
+					//FIX KA 20180603: Using fixed fields here
+					label_table_options($fixedFieldList)
+                    //get_table_options('Element', null, array(
+                    //    'record_types' => array('Item', 'All'),
+                    //    'sort' => 'orderBySet')
+                    //)
                 );
                 // btn btn-default dropdown-toggle
                 // <span class="caret"></span></button>
@@ -120,6 +134,7 @@ $formAttributes['class'] = 'form-horizontal';
         <button type="button" class="add_search btn btn-success pull-right" title="<?php echo __('Add a Field'); ?>"><span class="glyphicon glyphicon-plus"></span> <?php echo __('Add a Field'); ?></button>
     </div>
 
+    <!-- FIX KA 20180603: removed this
     <div id="search-by-range" class="field form-group">
         <?php echo $this->formLabel('range', __('Search by a range of ID#s (example: 1-4, 156, 79)')); ?>
         <div class="col-sm-10">
@@ -130,6 +145,7 @@ $formAttributes['class'] = 'form-horizontal';
         </div>
         </div>
     </div>
+    -->
 
     <div class="field form-group">
         <?php echo $this->formLabel('collection-search', __('Search By Collection')); ?>
@@ -146,6 +162,20 @@ $formAttributes['class'] = 'form-horizontal';
         </div>
         </div>
     </div>
+	
+	<?php
+	
+		//FIX KA 20180605: Using fixed list here.
+		$fixedTypeList = array(
+			18 => __('Könyv'),
+			19 => __('Cikk'),
+			20 => __('Újság'),
+			7 => __('Honlap'),
+			21 => __('Doktori disszertáció'),
+			1 => __('Szöveg')
+		);
+		
+	?>
 
     <div class="field form-group">
         <?php echo $this->formLabel('item-type-search', __('Search By Type')); ?>
@@ -156,7 +186,9 @@ $formAttributes['class'] = 'form-horizontal';
                 'type',
                 @$_REQUEST['type'],
                 array('id' => 'item-type-search'),
-                get_table_options('ItemType')
+				//FIX KA 20180603: Using fixed fields here
+				label_table_options($fixedTypeList)
+                //get_table_options('ItemType')
             );
         ?>
         </div>

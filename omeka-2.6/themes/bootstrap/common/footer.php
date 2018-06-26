@@ -7,8 +7,8 @@
                     <p><?php echo $footerText; ?></p>
                     <?php endif; ?>
 		    -->
-		    <a href="http://www.kormany.hu/hu/emberi-eroforrasok-miniszteriuma"><img class="partner" src="/fotoirodalom/themes/bootstrap/images/emmi_logo2.png" alt="Emberi Erőforrások Minisztériuma" /></a>
-		    <a href="http://fr.u-szeged.hu/"><img class="partner" src="/fotoirodalom/themes/bootstrap/images/logo_hu_2.jpg" alt="Francia Tanszék" /></a>
+		    <a href="http://www.kormany.hu/hu/emberi-eroforrasok-miniszteriuma"><img class="partner" src="/themes/bootstrap/images/emmi_logo2.png" alt="Emberi Erőforrások Minisztériuma" /></a>
+		    <a href="http://fr.u-szeged.hu/"><img class="partner" src="/themes/bootstrap/images/logo_hu_2.jpg" alt="Francia Tanszék" /></a>
 			
                 </div>
             </div>

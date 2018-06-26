@@ -8,7 +8,7 @@
     <?php 
 
 	//FIX KA 20180601: using Moly cover
-	$image = moly_cover($item);
+	$image = moly_cover($item, false);
 
 	//if (metadata($item, 'has files')):
         echo link_to_item(

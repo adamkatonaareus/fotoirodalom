@@ -228,7 +228,8 @@ class Item extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
             }
 
             try {
-                $this->_uploadFiles();
+		//FIX KA 20180603: removed file upload for undefined time
+                //$this->_uploadFiles();
             } catch (Omeka_File_Ingest_InvalidException $e) {
                 $this->addError('File Upload', $e->getMessage());
             }

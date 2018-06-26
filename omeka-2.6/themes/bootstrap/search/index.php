@@ -27,7 +27,11 @@ $searchRecordTypes = get_search_record_types();
     ?>
     <div class="row">
         <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
-            <?php if ($recordImage = record_image($recordType, 'square_thumbnail', array('class' => 'image img-responsive'))): ?>
+            <?php if (
+                //FIX KA 20180626: using moly cover or file cover
+		$recordImage = $recordType === 'Item' ? moly_cover($record) : saved_record_image(strtolower($recordType), $record)
+		//$recordImage = record_image($recordType, 'square_thumbnail', array('class' => 'image img-responsive'))
+		): ?>
                 <?php echo link_to($record, 'show', $recordImage, array('class' => $recordTypeAttrib . '-img')); ?>
             <?php else: ?>
                 <div class="<?php echo $recordTypeAttrib; ?>-img">

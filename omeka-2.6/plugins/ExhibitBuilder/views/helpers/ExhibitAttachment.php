@@ -21,8 +21,11 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
     {
         $item = $attachment->getItem();
         $file = $attachment->getFile();
+
+	//FIX KA 20180626: use moly image, render if image exists
+	$image = moly_cover($item);
         
-        if ($file) {
+        if ($image) {
             if (!isset($fileOptions['imgAttributes']['alt'])) {
                 $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true));
             }
@@ -31,7 +34,11 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
                 $imageSize = isset($fileOptions['imageSize'])
                     ? $fileOptions['imageSize']
                     : 'square_thumbnail';
-                $image = file_image($imageSize, $fileOptions['imgAttributes'], $file);
+
+	
+		//FIX KA 20180626: use moly image
+                //$image = file_image($imageSize, $fileOptions['imgAttributes'], $file);
+
                 $html = exhibit_builder_link_to_exhibit_item($image, $linkProps, $item);
             } else {
                 if (!isset($fileOptions['linkAttributes']['href'])) {

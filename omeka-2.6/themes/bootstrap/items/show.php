@@ -18,11 +18,20 @@ echo head(array(
             </nav>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-9">
+
     <div class="row page-header">
-        <div class="col-xs-12">
-            <h1><?php echo moly_cover($item, true); ?> <?php echo $pageTitle; ?></h1>
+        <div class="col-xs-3">
+            <h1><?php echo moly_cover($item, true); ?></h1>
+        </div>
+        <div class="col-xs-9">
+            <h1><?php echo $pageTitle; ?></h1>
         </div>
     </div>
+	</div>
+	</div>
+
 <?php if ($selectedMetadata = get_theme_option('Display Preselected Metadata')):
     echo common('show-selected-metadata', array('item' => $item));
 else:

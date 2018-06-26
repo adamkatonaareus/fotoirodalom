@@ -9,7 +9,9 @@
     <div id="collection-title" class="row page-header">
         <div class="col-xs-12">
             <h1><?php echo metadata('collection', array('Dublin Core', 'Title')); ?><br />
-                <small><?php echo __('%d items in collection', $collection->totalItems()); ?></small>
+                <small><?php 
+                        //FIX KA 20180626 this translation won't work because of the placeholder...
+			echo __('%d elem', $collection->totalItems()); ?></small>
             </h1>
         </div>
     </div>
@@ -44,7 +46,7 @@
 		//FIX KA 20180601: show moly cover
 		//if (metadata($item, 'has files')):
                     echo link_to_item(
-			moly_cover($item)
+			moly_cover($item, false)
 			//item_image('square_thumbnail', array('class' => 'img-rounded img-responsive img-thumbnail'))
 			);
                 //else:
@@ -62,7 +64,8 @@
     <div class="row">
         <div class="col-xs-12">
             <p class="view-items-link-browse lead" style="text-align:center"><?php
-                echo link_to_items_in_collection(__('Browse all items in the collection'), $collection);
+				//FIX KA2018026: no translation for this.
+                echo link_to_items_in_collection('A gyűjtemény minden elemének böngészése', $collection);
             ?></p>
         </div>
     </div>
